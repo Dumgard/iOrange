@@ -8,9 +8,11 @@ specializations = ['Программист_JavaScript', 'HTML-верстальщ
 rank = ('low', 'medium', 'high')
 # columns = ['Вуз_Факультет_Направление']
 columns = ['low_bound', 'high_bound']
+col2 = []
 for name in specializations:
     for i in range(len(rank)):
-        columns.append(name + '_' + rank[i])
+        col2.append(name + '_' + rank[i])
+columns = columns + col2
 columns.append('остальное')
 
 universities = ['МГУ_им_МВЛомоносова', 'МГТУ_им_НЭБаумана', 'МИСиС', 'Университет_Синергия', 'НГУ']
@@ -39,7 +41,7 @@ df.to_csv('test_data.csv')
 sum1 = df.iloc[:, 0].sum() / df.shape[0]
 print(sum1)
 
-sr = pd.Series([(lambda x: random.randint(math.ceil(sum1 * 0.8), math.ceil(sum1 * 1.2)))(i) for i in range(len(index))], index=index)
+sr = pd.Series([(lambda x: random.randint(math.ceil(sum1 * 0.8), math.ceil(sum1 * 1.2)))(i) for i in range(len(col2))], index=col2)
 print(sr)
 
 sr.to_csv('test_vacancies.csv')

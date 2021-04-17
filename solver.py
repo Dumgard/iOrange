@@ -19,13 +19,14 @@ def evaluation(x, x_low, x_max, dx):
             x[i] -= dx[i]*(x[i] - x_max[i])/(dx[i] + (x[i] - x_max[i]))
 
 #data_vac = pd.read_csv("test_data.csv")
-data_vac = [200., 200., 100.]
+data_vac = pd.read_csv("test_vacancies.csv")
 data_univ = pd.read_csv("test_data.csv")
 bound_low = np.array(data_univ["low_bound"], dtype="float64")
 bound_high = np.array(data_univ["high_bound"], dtype="float64")
-#S = np.array(data_vac["amount"], dtype="float64")
-S = np.array(data_vac, dtype="float64")
+S = np.array(data_vac[data_vac.columns[1]], dtype="float64")
+#S = np.array(data_vac, dtype="float64")
 I = len(data_vac)
+print(I)
 J = len(data_univ)
 P_list = []
 for col in data_univ.columns[3:I+3]:
@@ -42,3 +43,7 @@ for i in range(steps):
 print("\nK is:")
 print(K)
 print("\nOn vacantions {} goes {}".format(S, S_pred(P, K)))
+
+#for i in range(len(K)):
+#    if abs(S[i] > S_pred(P, K)[i]) < 20:
+#        print("We have enough vacantions for " + data_univ.columns[i+3] + "")
