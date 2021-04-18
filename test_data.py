@@ -38,10 +38,11 @@ print(df)
 df.to_csv('test_data.csv')
 
 
-sum1 = df.iloc[:, 0].sum() / df.shape[0]
+sum1 = df.iloc[:, 0].sum() * 2 / df.shape[0]
 print(sum1)
 
-sr = pd.Series([(lambda x: random.randint(math.ceil(sum1 * 0.8), math.ceil(sum1 * 1.2)))(i) for i in range(len(col2))], index=col2)
+# sr = pd.Series([(lambda x: random.randint(math.ceil(sum1 * 0.8), math.ceil(sum1 * 1.2)))(i) for i in range(len(col2))], index=col2)
+sr = pd.Series([(lambda x: random.randint(160, 200))(i) for i in range(len(col2))], index=col2)
 print(sr)
 
 sr.to_csv('test_vacancies.csv')
